@@ -1,0 +1,902 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HRSH — Human Resources Solutions Hub</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "pg-bg": "#EAEDF8",
+              surface: "#FFFFFF",
+              "txt-dark": "#2A383F",
+              "txt-mid": "#6B7A87",
+              peri: "#6265B5",
+              "peri-deep": "#3A3D82",
+              "peri-lite": "#C2C3E8",
+              "cta-blk": "#1A1B35",
+            },
+            fontFamily: {
+              display: ['"Cormorant Garamond"', "Georgia", "serif"],
+              body: ['"DM Sans"', "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+        <link rel="stylesheet" href="css/styles.css" />
+
+  </head>
+
+  <body class="font-body">
+    <!-- ═══ NAV ═══ -->
+    <nav class="nav-wrap" id="main-nav">
+      <div
+        class="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between h-20"
+      >
+        <a
+          href="#"
+          onclick="
+            navigateTo('home');
+            return false;
+          "
+          class="logo-mark"
+          >HR<span class="sh">SH</span></a
+        >
+        <div class="hidden md:flex items-center gap-10">
+          <a
+            href="#"
+            onclick="
+              navigateTo('home');
+              return false;
+            "
+            class="nav-link active"
+            data-nav="home"
+            >Home</a
+          >
+          <a
+            href="#"
+            onclick="
+              navigateTo('about');
+              return false;
+            "
+            class="nav-link"
+            data-nav="about"
+            >About</a
+          >
+          <div class="has-dropdown">
+            <button
+              class="nav-link flex items-center gap-1"
+              data-nav="services"
+              onclick="
+                navigateTo('services');
+                return false;
+              "
+            >
+              Services
+              <i
+                data-lucide="chevron-down"
+                class="w-3.5 h-3.5 dropdown-arrow"
+              ></i>
+            </button>
+            <div class="dropdown-menu">
+              <div
+                class="dropdown-item"
+                onclick="navigateTo('svc-foundations')"
+              >
+                <span class="di-icon"
+                  ><i
+                    data-lucide="layers"
+                    class="w-3.5 h-3.5"
+                    style="color: #6265b5"
+                  ></i></span
+                >HR Foundations
+              </div>
+              <div class="dropdown-item" onclick="navigateTo('svc-talent')">
+                <span class="di-icon"
+                  ><i
+                    data-lucide="users"
+                    class="w-3.5 h-3.5"
+                    style="color: #6265b5"
+                  ></i></span
+                >Talent Management
+              </div>
+              <div class="dropdown-item" onclick="navigateTo('svc-experience')">
+                <span class="di-icon"
+                  ><i
+                    data-lucide="heart"
+                    class="w-3.5 h-3.5"
+                    style="color: #6265b5"
+                  ></i></span
+                >Employee Experience &amp; Relations
+              </div>
+              <div class="dropdown-item" onclick="navigateTo('svc-fractional')">
+                <span class="di-icon"
+                  ><i
+                    data-lucide="briefcase"
+                    class="w-3.5 h-3.5"
+                    style="color: #6265b5"
+                  ></i></span
+                >Fractional HR Leadership
+              </div>
+            </div>
+          </div>
+          <a
+            href="#"
+            onclick="
+              navigateTo('contact');
+              return false;
+            "
+            class="nav-link"
+            data-nav="contact"
+            >Contact</a
+          >
+          <a
+            href="#"
+            onclick="
+              navigateTo('contact');
+              return false;
+            "
+            class="btn-cta"
+            style="padding: 0.625rem 1.25rem; font-size: 0.8rem"
+            >Book a Discovery Call</a
+          >
+        </div>
+        <button id="mobileToggle" class="md:hidden p-2" style="color: #2a383f">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden px-6 pb-6 pt-2"
+        style="
+          background: #ffffff;
+          border-top: 1px solid rgba(98, 101, 181, 0.12);
+        "
+      >
+        <a
+          href="#"
+          onclick="
+            navigateTo('home');
+            toggleMobile();
+            return false;
+          "
+          class="mobile-nav-link"
+          >Home</a
+        >
+        <a
+          href="#"
+          onclick="
+            navigateTo('about');
+            toggleMobile();
+            return false;
+          "
+          class="mobile-nav-link"
+          >About</a
+        >
+        <a
+          href="#"
+          onclick="
+            navigateTo('services');
+            toggleMobile();
+            return false;
+          "
+          class="mobile-nav-link"
+          >Services</a
+        >
+        <a
+          href="#"
+          onclick="
+            navigateTo('svc-foundations');
+            toggleMobile();
+            return false;
+          "
+          class="mobile-nav-link"
+          style="padding-left: 1rem; font-size: 0.875rem; color: #6b7a87"
+          >&#8594; HR Foundations</a
+        >
+        <a
+          href="#"
+          onclick="
+            navigateTo('svc-talent');
+            toggleMobile();
+            return false;
+          "
+          class="mobile-nav-link"
+          style="padding-left: 1rem; font-size: 0.875rem; color: #6b7a87"
+          >&#8594; Talent Management</a
+        >
+        <a
+          href="#"
+          onclick="
+            navigateTo('svc-experience');
+            toggleMobile();
+            return false;
+          "
+          class="mobile-nav-link"
+          style="padding-left: 1rem; font-size: 0.875rem; color: #6b7a87"
+          >&#8594; Employee Experience &amp; Relations</a
+        >
+        <a
+          href="#"
+          onclick="
+            navigateTo('svc-fractional');
+            toggleMobile();
+            return false;
+          "
+          class="mobile-nav-link"
+          style="padding-left: 1rem; font-size: 0.875rem; color: #6b7a87"
+          >&#8594; Fractional HR Leadership</a
+        >
+        <a
+          href="#"
+          onclick="
+            navigateTo('contact');
+            toggleMobile();
+            return false;
+          "
+          class="mobile-nav-link"
+          >Contact</a
+        >
+        <a
+          href="#"
+          onclick="
+            navigateTo('contact');
+            toggleMobile();
+            return false;
+          "
+          class="btn-cta mt-4 justify-center w-full"
+          >Book a Discovery Call</a
+        >
+      </div>
+    </nav>
+
+    <!-- ═══════════════════════════════════════
+     PAGE 1 — HOME
+═══════════════════════════════════════ -->
+    <div id="page-home" class="page active-page">
+      <!-- HERO -->
+      <section
+        class="px-6 lg:px-12 pt-36 pb-24 lg:pt-44 lg:pb-32"
+        style="background: linear-gradient(155deg, #eaedf8 55%, #c2c3e8 100%)"
+      >
+        <div class="max-w-7xl mx-auto">
+          <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <p class="eyebrow mb-6 fade-up">Human-Centred. Results-Driven.</p>
+              <h1 class="display-hero mb-7 fade-up d1" style="color: #2a383f">
+                Growing Teams.<br /><em style="color: #6265b5"
+                  >Stronger Foundations.</em
+                >
+              </h1>
+              <p
+                class="body-lg mb-10 max-w-lg fade-up d2"
+                style="color: #6b7a87"
+              >
+                When your team gets bigger, your HR needs to get smarter. HRSH
+                builds lean, automated HR foundations that give your business
+                the structure to move fast, without the overhead.
+              </p>
+              <div class="flex flex-wrap gap-4 fade-up d3">
+                <a
+                  href="#"
+                  onclick="
+                    navigateTo('contact');
+                    return false;
+                  "
+                  class="btn-cta"
+                  >Build Your HR Foundation
+                  <i data-lucide="arrow-right" class="w-4 h-4"></i
+                ></a>
+                <a
+                  href="#"
+                  onclick="
+                    navigateTo('services');
+                    return false;
+                  "
+                  class="btn-outline"
+                  >Our Services</a
+                >
+              </div>
+            </div>
+            <div class="hidden lg:block fade-up d2">
+              <div class="hero-photo" style="height: 480px">
+                <img
+                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&auto=format&fit=crop&q=80"
+                  alt="Happy team collaborating in a bright modern office"
+                  loading="lazy"
+                />
+                <div class="hero-overlay"></div>
+                <div
+                  style="
+                    position: absolute;
+                    bottom: 1.5rem;
+                    left: 1.5rem;
+                    background: rgba(255, 255, 255, 0.96);
+                    border-radius: 12px;
+                    padding: 1rem 1.25rem;
+                    box-shadow: 0 12px 32px rgba(42, 56, 63, 0.14);
+                    border: 1px solid rgba(194, 195, 232, 0.4);
+                  "
+                >
+                  <p
+                    class="eyebrow"
+                    style="font-size: 0.6rem; margin-bottom: 0.25rem"
+                  >
+                    Proven Impact
+                  </p>
+                  <p
+                    style="
+                      font-family: &quot;Cormorant Garamond&quot;, serif;
+                      font-size: 2.25rem;
+                      font-weight: 700;
+                      color: #6265b5;
+                      line-height: 1;
+                    "
+                  >
+                    3&times;
+                  </p>
+                  <p
+                    style="
+                      font-size: 0.75rem;
+                      color: #6b7a87;
+                      font-weight: 500;
+                      margin-top: 0.2rem;
+                    "
+                  >
+                    Faster Hiring
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- WHY HRSH -->
+      <section class="py-24 lg:py-32 px-6 lg:px-12" style="background: #ffffff">
+        <div class="max-w-7xl mx-auto">
+          <div class="grid lg:grid-cols-2 gap-20 items-start">
+            <div class="fade-up">
+              <p class="eyebrow mb-5">Why Choose HRSH</p>
+              <h2 class="display-h2 mb-6" style="color: #2a383f">
+                Growth Brings Complexity. Your HR Foundation Is How You Manage
+                It.
+              </h2>
+              <div class="peri-line"></div>
+            </div>
+            <div class="fade-up d2">
+              <p class="body-lg mb-6" style="color: #6b7a87">
+                More hires mean more complexity. More complexity means the
+                informal approach: the spreadsheets, the ad hoc policies, the
+                figuring-it-out-as-you-go, stops being enough.
+              </p>
+              <p class="body-lg mb-6" style="color: #6b7a87">
+                That's the moment HRSH is built for.
+              </p>
+              <p class="body-lg" style="color: #6b7a87">
+                We design and automate the HR infrastructure that lets you keep
+                hiring confidently, stay compliant, and build a team that
+                performs, without adding headcount to your HR function.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES SNAPSHOT -->
+      <section class="py-24 lg:py-32 px-6 lg:px-12" style="background: #eaedf8">
+        <div class="max-w-7xl mx-auto">
+          <div class="mb-14 fade-up">
+            <p class="eyebrow mb-4">What We Do</p>
+            <h2 class="display-h2 mb-3" style="color: #2a383f">
+              Four Ways We Build Your HR Foundation
+            </h2>
+            <p class="body-sm max-w-xl">
+              Each service is built to flex as your business evolves. Start
+              where the priority is. Add more when you're ready.
+            </p>
+          </div>
+          <div class="grid md:grid-cols-2 gap-6 mb-12">
+            <div
+              class="service-tile fade-up d1"
+              onclick="navigateTo('svc-foundations')"
+            >
+              <h3 class="display-h3 mb-2" style="color: #2a383f">
+                HR Foundations
+              </h3>
+              <p
+                class="mb-3"
+                style="
+                  color: #6265b5;
+                  font-size: 0.875rem;
+                  font-weight: 600;
+                  font-style: italic;
+                "
+              >
+                Efficient systems. Built to last.
+              </p>
+              <p class="body-sm mb-6">
+                A complete audit of where you stand today: policies, handbooks,
+                processes, and workflows, followed by a lean, automated HR
+                foundation built for where you're headed.
+              </p>
+              <div
+                class="flex items-center gap-2"
+                style="color: #6265b5; font-size: 0.875rem; font-weight: 600"
+              >
+                Explore service
+                <i data-lucide="arrow-right" class="w-4 h-4 tile-arrow"></i>
+              </div>
+            </div>
+            <div
+              class="service-tile fade-up d2"
+              onclick="navigateTo('svc-talent')"
+            >
+              <h3 class="display-h3 mb-2" style="color: #2a383f">
+                Talent Management
+              </h3>
+              <p
+                class="mb-3"
+                style="
+                  color: #6265b5;
+                  font-size: 0.875rem;
+                  font-weight: 600;
+                  font-style: italic;
+                "
+              >
+                Hire well. Build better.
+              </p>
+              <p class="body-sm mb-6">
+                The recruitment, performance, and development infrastructure to
+                bring the right people in, set them up for success, and keep
+                your standards high as your headcount climbs.
+              </p>
+              <div
+                class="flex items-center gap-2"
+                style="color: #6265b5; font-size: 0.875rem; font-weight: 600"
+              >
+                Explore service
+                <i data-lucide="arrow-right" class="w-4 h-4 tile-arrow"></i>
+              </div>
+            </div>
+            <div
+              class="service-tile fade-up d3"
+              onclick="navigateTo('svc-experience')"
+            >
+              <h3 class="display-h3 mb-2" style="color: #2a383f">
+                Employee Experience &amp; Relations
+              </h3>
+              <p
+                class="mb-3"
+                style="
+                  color: #6265b5;
+                  font-size: 0.875rem;
+                  font-weight: 600;
+                  font-style: italic;
+                "
+              >
+                Culture that holds as you grow.
+              </p>
+              <p class="body-sm mb-6">
+                Structured engagement, clear communication frameworks, and
+                employee relations processes that build a culture grounded in
+                your values and keep it consistent as your team grows.
+              </p>
+              <div
+                class="flex items-center gap-2"
+                style="color: #6265b5; font-size: 0.875rem; font-weight: 600"
+              >
+                Explore service
+                <i data-lucide="arrow-right" class="w-4 h-4 tile-arrow"></i>
+              </div>
+            </div>
+            <div
+              class="service-tile fade-up d4"
+              onclick="navigateTo('svc-fractional')"
+            >
+              <h3 class="display-h3 mb-2" style="color: #2a383f">
+                Fractional HR Leadership &amp; Support
+              </h3>
+              <p
+                class="mb-3"
+                style="
+                  color: #6265b5;
+                  font-size: 0.875rem;
+                  font-weight: 600;
+                  font-style: italic;
+                "
+              >
+                Senior HR expertise. Right-sized for your stage.
+              </p>
+              <p class="body-sm mb-6">
+                Direct access to experienced HR leadership on a flexible basis,
+                covering the strategic decisions, compliance questions, and
+                people challenges that come with fast growth.
+              </p>
+              <div
+                class="flex items-center gap-2"
+                style="color: #6265b5; font-size: 0.875rem; font-weight: 600"
+              >
+                Explore service
+                <i data-lucide="arrow-right" class="w-4 h-4 tile-arrow"></i>
+              </div>
+            </div>
+          </div>
+          <div class="text-center fade-up">
+            <a
+              href="#"
+              onclick="
+                navigateTo('services');
+                return false;
+              "
+              class="btn-outline"
+              >&#8594; See All Services</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- HOW IT WORKS -->
+      <section class="py-24 lg:py-32 px-6 lg:px-12" style="background: #ffffff">
+        <div class="max-w-5xl mx-auto text-center">
+          <p class="eyebrow mb-4 fade-up">Process</p>
+          <h2 class="display-h2 mb-16 fade-up d1" style="color: #2a383f">
+            How It Works
+          </h2>
+          <div class="grid md:grid-cols-3 gap-10">
+            <div class="fade-up d1">
+              <div class="process-badge mx-auto mb-6">1</div>
+              <h3 class="display-h3 mb-3" style="color: #2a383f">
+                Free Consultation
+              </h3>
+              <p class="body-sm">
+                We map where you are and what your HR needs to look like to
+                support your next phase.
+              </p>
+            </div>
+            <div class="fade-up d2">
+              <div class="process-badge mx-auto mb-6">2</div>
+              <h3 class="display-h3 mb-3" style="color: #2a383f">
+                Scoped Engagement
+              </h3>
+              <p class="body-sm">
+                We scope the engagement: one service, a combination, or the full
+                suite.
+              </p>
+            </div>
+            <div class="fade-up d3">
+              <div class="process-badge mx-auto mb-6">3</div>
+              <h3 class="display-h3 mb-3" style="color: #2a383f">
+                Build, Automate &amp; Scale
+              </h3>
+              <p class="body-sm">
+                We build, automate, and optimize. Your HR scales as you do.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STATS -->
+      <section class="py-24 lg:py-32 px-6 lg:px-12 peri-band">
+        <div class="max-w-7xl mx-auto">
+          <p class="eyebrow mb-4 text-center fade-up" style="color: #c2c3e8">
+            By the Numbers
+          </p>
+          <h2
+            class="display-h2 text-center mb-16 fade-up d1"
+            style="color: #ffffff"
+          >
+            Results You Can Point To
+          </h2>
+          <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
+            <div class="text-center fade-up d1">
+              <p class="stat-number">15%</p>
+              <div class="stat-divider"></div>
+              <p
+                class="text-xs uppercase tracking-wider font-medium mt-1"
+                style="color: rgba(255, 255, 255, 0.6)"
+              >
+                Improvement in Talent Retention
+              </p>
+            </div>
+            <div class="text-center fade-up d2">
+              <p class="stat-number">50%</p>
+              <div class="stat-divider"></div>
+              <p
+                class="text-xs uppercase tracking-wider font-medium mt-1"
+                style="color: rgba(255, 255, 255, 0.6)"
+              >
+                Leadership Promotions Within Six Months
+              </p>
+            </div>
+            <div class="text-center fade-up d3">
+              <p class="stat-number">10pts</p>
+              <div class="stat-divider"></div>
+              <p
+                class="text-xs uppercase tracking-wider font-medium mt-1"
+                style="color: rgba(255, 255, 255, 0.6)"
+              >
+                Increase in Engagement Scores
+              </p>
+            </div>
+            <div class="text-center fade-up d3">
+              <p class="stat-number">400+</p>
+              <div class="stat-divider"></div>
+              <p
+                class="text-xs uppercase tracking-wider font-medium mt-1"
+                style="color: rgba(255, 255, 255, 0.6)"
+              >
+                Employees Engaged Through DEIB Programming
+              </p>
+            </div>
+            <div class="text-center fade-up d4">
+              <p class="stat-number">30%</p>
+              <div class="stat-divider"></div>
+              <p
+                class="text-xs uppercase tracking-wider font-medium mt-1"
+                style="color: rgba(255, 255, 255, 0.6)"
+              >
+                Faster Time-to-Productivity After Onboarding Redesign
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- HOME CTA BANNER -->
+      <section class="py-24 lg:py-32 px-6 lg:px-12" style="background: #eaedf8">
+        <div class="max-w-3xl mx-auto text-center fade-up">
+          <p class="eyebrow mb-5">Ready to Begin?</p>
+          <h2 class="display-h2 mb-6" style="color: #2a383f">
+            Ready to Build HR That Moves as Fast as Your Business?
+          </h2>
+          <p class="body-lg mb-4" style="color: #6b7a87">
+            Let's start with where you are today and build the foundation your
+            team needs for what's next.
+          </p>
+          <p class="body-sm mb-10">Book a free consultation.</p>
+          <a
+            href="#"
+            onclick="
+              navigateTo('contact');
+              return false;
+            "
+            class="btn-cta"
+            >Let's Get to Work! <i data-lucide="arrow-right" class="w-4 h-4"></i
+          ></a>
+        </div>
+      </section>
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer class="py-16 px-6 lg:px-12 dark-band">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-4 gap-12 mb-12">
+          <div class="md:col-span-2">
+            <a
+              href="#"
+              onclick="
+                navigateTo('home');
+                return false;
+              "
+              style="
+                font-family: &quot;Cormorant Garamond&quot;, serif;
+                font-weight: 700;
+                font-size: 1.5rem;
+                color: #ffffff;
+                letter-spacing: -0.03em;
+                text-decoration: none;
+              "
+              >HR<span style="color: #c2c3e8">SH</span></a
+            >
+            <p
+              style="
+                color: rgba(255, 255, 255, 0.45);
+                font-size: 0.875rem;
+                margin-top: 1rem;
+                line-height: 1.65;
+                max-width: 280px;
+              "
+            >
+              Building people-first organizations that last. Human-centred.
+              Results-driven. Strategic HR that moves at the speed of your
+              business.
+            </p>
+            <p
+              style="
+                color: rgba(255, 255, 255, 0.3);
+                font-size: 0.8rem;
+                margin-top: 0.75rem;
+              "
+            >
+              hello@hrsh.ca
+            </p>
+          </div>
+          <div>
+            <p
+              style="
+                color: rgba(255, 255, 255, 0.35);
+                font-size: 0.68rem;
+                text-transform: uppercase;
+                letter-spacing: 0.18em;
+                font-weight: 600;
+                margin-bottom: 1rem;
+              "
+            >
+              Navigation
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 0.75rem">
+              <a
+                href="#"
+                onclick="
+                  navigateTo('home');
+                  return false;
+                "
+                style="
+                  color: rgba(255, 255, 255, 0.55);
+                  font-size: 0.875rem;
+                  text-decoration: none;
+                "
+                onmouseover="this.style.color = '#FFF'"
+                onmouseout="this.style.color = 'rgba(255,255,255,0.55)'"
+                >Home</a
+              >
+              <a
+                href="#"
+                onclick="
+                  navigateTo('about');
+                  return false;
+                "
+                style="
+                  color: rgba(255, 255, 255, 0.55);
+                  font-size: 0.875rem;
+                  text-decoration: none;
+                "
+                onmouseover="this.style.color = '#FFF'"
+                onmouseout="this.style.color = 'rgba(255,255,255,0.55)'"
+                >About</a
+              >
+              <a
+                href="#"
+                onclick="
+                  navigateTo('services');
+                  return false;
+                "
+                style="
+                  color: rgba(255, 255, 255, 0.55);
+                  font-size: 0.875rem;
+                  text-decoration: none;
+                "
+                onmouseover="this.style.color = '#FFF'"
+                onmouseout="this.style.color = 'rgba(255,255,255,0.55)'"
+                >Services</a
+              >
+              <a
+                href="#"
+                onclick="
+                  navigateTo('contact');
+                  return false;
+                "
+                style="
+                  color: rgba(255, 255, 255, 0.55);
+                  font-size: 0.875rem;
+                  text-decoration: none;
+                "
+                onmouseover="this.style.color = '#FFF'"
+                onmouseout="this.style.color = 'rgba(255,255,255,0.55)'"
+                >Contact</a
+              >
+            </div>
+          </div>
+          <div>
+            <p
+              style="
+                color: rgba(255, 255, 255, 0.35);
+                font-size: 0.68rem;
+                text-transform: uppercase;
+                letter-spacing: 0.18em;
+                font-weight: 600;
+                margin-bottom: 1rem;
+              "
+            >
+              Services
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 0.75rem">
+              <a
+                href="#"
+                onclick="
+                  navigateTo('svc-foundations');
+                  return false;
+                "
+                style="
+                  color: rgba(255, 255, 255, 0.55);
+                  font-size: 0.875rem;
+                  text-decoration: none;
+                "
+                onmouseover="this.style.color = '#FFF'"
+                onmouseout="this.style.color = 'rgba(255,255,255,0.55)'"
+                >HR Foundations</a
+              >
+              <a
+                href="#"
+                onclick="
+                  navigateTo('svc-talent');
+                  return false;
+                "
+                style="
+                  color: rgba(255, 255, 255, 0.55);
+                  font-size: 0.875rem;
+                  text-decoration: none;
+                "
+                onmouseover="this.style.color = '#FFF'"
+                onmouseout="this.style.color = 'rgba(255,255,255,0.55)'"
+                >Talent Management</a
+              >
+              <a
+                href="#"
+                onclick="
+                  navigateTo('svc-experience');
+                  return false;
+                "
+                style="
+                  color: rgba(255, 255, 255, 0.55);
+                  font-size: 0.875rem;
+                  text-decoration: none;
+                "
+                onmouseover="this.style.color = '#FFF'"
+                onmouseout="this.style.color = 'rgba(255,255,255,0.55)'"
+                >Employee Experience &amp; Relations</a
+              >
+              <a
+                href="#"
+                onclick="
+                  navigateTo('svc-fractional');
+                  return false;
+                "
+                style="
+                  color: rgba(255, 255, 255, 0.55);
+                  font-size: 0.875rem;
+                  text-decoration: none;
+                "
+                onmouseover="this.style.color = '#FFF'"
+                onmouseout="this.style.color = 'rgba(255,255,255,0.55)'"
+                >Fractional HR Leadership</a
+              >
+            </div>
+          </div>
+        </div>
+        <div
+          style="
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+          "
+        >
+          <p style="color: rgba(255, 255, 255, 0.25); font-size: 0.75rem">
+            &#169; 2025 HRSH &#8212; Human Resources Solutions Hub. All rights
+            reserved.
+          </p>
+          <p style="color: rgba(255, 255, 255, 0.25); font-size: 0.75rem">
+            Canada &#183; Remote
+          </p>
+        </div>
+      </div>
+    </footer>
+      <script src="js/main.js"></script>
+  </body>
+</html>

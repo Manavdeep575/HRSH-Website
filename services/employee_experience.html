@@ -1,0 +1,820 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HRSH — Human Resources Solutions Hub</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "pg-bg": "#EAEDF8", surface: "#FFFFFF",
+              "txt-dark": "#2A383F", "txt-mid": "#6B7A87",
+              peri: "#6265B5", "peri-deep": "#3A3D82",
+              "peri-lite": "#C2C3E8", "cta-blk": "#1A1B35",
+            },
+            fontFamily: {
+              display: ['"Cormorant Garamond"', "Georgia", "serif"],
+              body: ['"DM Sans"', "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body class="font-body">
+      <nav class="nav-wrap" id="main-nav">
+      <div
+        class="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between h-20"
+      >
+        <a
+          href="#"
+          onclick="
+            navigateTo('home');
+            return false;
+          "
+          class="logo-mark"
+          >HR<span class="sh">SH</span></a
+        >
+        <div class="hidden md:flex items-center gap-10">
+          <a
+            href="#"
+            onclick="
+              navigateTo('home');
+              return false;
+            "
+            class="nav-link active"
+            data-nav="home"
+            >Home</a
+          >
+          <a
+            href="#"
+            onclick="
+              navigateTo('about');
+              return false;
+            "
+            class="nav-link"
+            data-nav="about"
+            >About</a
+          >
+          <div class="has-dropdown">
+            <button
+              class="nav-link flex items-center gap-1"
+              data-nav="services"
+              onclick="
+                navigateTo('services');
+                return false;
+              "
+            >
+              Services
+              <i
+                data-lucide="chevron-down"
+                class="w-3.5 h-3.5 dropdown-arrow"
+              ></i>
+            </button>
+            <div class="dropdown-menu">
+              <div
+                class="dropdown-item"
+                onclick="navigateTo('svc-foundations')"
+              >
+                <span class="di-icon"
+                  ><i
+                    data-lucide="layers"
+                    class="w-3.5 h-3.5"
+                    style="color: #6265b5"
+                  ></i></span
+                >HR Foundations
+              </div>
+              <div class="dropdown-item" onclick="navigateTo('svc-talent')">
+                <span class="di-icon"
+                  ><i
+                    data-lucide="users"
+                    class="w-3.5 h-3.5"
+                    style="color: #6265b5"
+                  ></i></span
+                >Talent Management
+              </div>
+              <div class="dropdown-item" onclick="navigateTo('svc-experience')">
+                <span class="di-icon"
+                  ><i
+                    data-lucide="heart"
+                    class="w-3.5 h-3.5"
+                    style="color: #6265b5"
+                  ></i></span
+                >Employee Experience &amp; Relations
+              </div>
+              <div class="dropdown-item" onclick="navigateTo('svc-fractional')">
+                <span class="di-icon"
+                  ><i
+                    data-lucide="briefcase"
+                    class="w-3.5 h-3.5"
+                    style="color: #6265b5"
+                  ></i></span
+                >Fractional HR Leadership
+              </div>
+            </div>
+          </div>
+          <a
+            href="#"
+            onclick="
+              navigateTo('contact');
+              return false;
+            "
+            class="nav-link"
+            data-nav="contact"
+            >Contact</a
+          >
+          <a
+            href="#"
+            onclick="
+              navigateTo('contact');
+              return false;
+            "
+            class="btn-cta"
+            style="padding: 0.625rem 1.25rem; font-size: 0.8rem"
+            >Book a Discovery Call</a
+          >
+        </div>
+        <button id="mobileToggle" class="md:hidden p-2" style="color: #2a383f">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden px-6 pb-6 pt-2"
+        style="
+          background: #ffffff;
+          border-top: 1px solid rgba(98, 101, 181, 0.12);
+        "
+      >
+        <a
+          href="#"
+          onclick="
+            navigateTo('home');
+            toggleMobile();
+            return false;
+          "
+          class="mobile-nav-link"
+          >Home</a
+        >
+        <a
+          href="#"
+          onclick="
+            navigateTo('about');
+            toggleMobile();
+            return false;
+          "
+          class="mobile-nav-link"
+          >About</a
+        >
+        <a
+          href="#"
+          onclick="
+            navigateTo('services');
+            toggleMobile();
+            return false;
+          "
+          class="mobile-nav-link"
+          >Services</a
+        >
+        <a
+          href="#"
+          onclick="
+            navigateTo('svc-foundations');
+            toggleMobile();
+            return false;
+          "
+          class="mobile-nav-link"
+          style="padding-left: 1rem; font-size: 0.875rem; color: #6b7a87"
+          >&#8594; HR Foundations</a
+        >
+        <a
+          href="#"
+          onclick="
+            navigateTo('svc-talent');
+            toggleMobile();
+            return false;
+          "
+          class="mobile-nav-link"
+          style="padding-left: 1rem; font-size: 0.875rem; color: #6b7a87"
+          >&#8594; Talent Management</a
+        >
+        <a
+          href="#"
+          onclick="
+            navigateTo('svc-experience');
+            toggleMobile();
+            return false;
+          "
+          class="mobile-nav-link"
+          style="padding-left: 1rem; font-size: 0.875rem; color: #6b7a87"
+          >&#8594; Employee Experience &amp; Relations</a
+        >
+        <a
+          href="#"
+          onclick="
+            navigateTo('svc-fractional');
+            toggleMobile();
+            return false;
+          "
+          class="mobile-nav-link"
+          style="padding-left: 1rem; font-size: 0.875rem; color: #6b7a87"
+          >&#8594; Fractional HR Leadership</a
+        >
+        <a
+          href="#"
+          onclick="
+            navigateTo('contact');
+            toggleMobile();
+            return false;
+          "
+          class="mobile-nav-link"
+          >Contact</a
+        >
+        <a
+          href="#"
+          onclick="
+            navigateTo('contact');
+            toggleMobile();
+            return false;
+          "
+          class="btn-cta mt-4 justify-center w-full"
+          >Book a Discovery Call</a
+        >
+      </div>
+    </nav>
+
+        <!-- ═══════════════════════════════════════
+     SERVICE PAGE — EMPLOYEE EXPERIENCE & RELATIONS
+═══════════════════════════════════════ -->
+  
+      <section class="dark-hero pt-40 pb-20 px-6 lg:px-12">
+        <div class="max-w-4xl mx-auto">
+          <p class="eyebrow mb-4 fade-up" style="color: #c2c3e8">
+            Employee Experience &amp; Relations
+          </p>
+          <h1 class="display-hero mb-6 fade-up d1" style="color: #ffffff">
+            A Workplace People Thrive In
+          </h1>
+          <p
+            class="body-lg fade-up d2 max-w-2xl"
+            style="color: rgba(255, 255, 255, 0.65)"
+          >
+            Culture is easy to maintain when a team is small. The challenge is
+            keeping it intact as headcount climbs, roles diversify, and the
+            informal connective tissue that worked at 10 people stops working at
+            40. Employee Experience &amp; Relations builds the infrastructure
+            that holds your culture together and handles people challenges
+            before they become business problems.
+          </p>
+        </div>
+      </section>
+      <section class="py-24 lg:py-32 px-6 lg:px-12" style="background: #ffffff">
+        <div class="max-w-4xl mx-auto">
+          <p class="body-lg mb-16 fade-up" style="color: #6b7a87">
+            This service is for businesses that want to take ownership of how
+            their team experiences work. We build the engagement frameworks,
+            communication systems, and employee relations processes that keep
+            your people connected, your culture strong, and your leadership
+            equipped to handle what comes up.
+          </p>
+
+          <div class="mb-16 fade-up">
+            <div class="flex gap-6 items-start">
+              <div class="svc-number">1</div>
+              <div>
+                <h3 class="display-h3 mb-3" style="color: #2a383f">
+                  Engagement Strategy
+                </h3>
+                <p class="body-sm mb-5">
+                  You can't improve what you don't measure. We design, implement
+                  and, analyze an engagement survey to give you a strategy plan.
+                  The goal is to give you a real, ongoing read on how your team
+                  is doing, with a clear action plan for what to do with that
+                  information. It's a process that builds trust, surfaces issues
+                  early, and gives leaders the data they need to make better
+                  decisions.
+                </p>
+                <p
+                  class="body-sm mb-3"
+                  style="color: #2a383f; font-weight: 600"
+                >
+                  Included:
+                </p>
+                <div class="grid sm:grid-cols-2 gap-1">
+                  <div class="check-item">
+                    <span class="check-dot"></span
+                    ><span class="body-sm"
+                      >Engagement survey design and cadence</span
+                    >
+                  </div>
+                  <div class="check-item">
+                    <span class="check-dot"></span
+                    ><span class="body-sm">Stay interview frameworks</span>
+                  </div>
+                  <div class="check-item">
+                    <span class="check-dot"></span
+                    ><span class="body-sm"
+                      >Results analysis and action planning</span
+                    >
+                  </div>
+                  <div class="check-item">
+                    <span class="check-dot"></span
+                    ><span class="body-sm"
+                      >Manager-ready communication guides</span
+                    >
+                  </div>
+                  <div class="check-item">
+                    <span class="check-dot"></span
+                    ><span class="body-sm"
+                      >Pulse check templates for ongoing monitoring</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr style="border-color: #c2c3e8; margin-bottom: 4rem" />
+
+          <div class="mb-16 fade-up d1">
+            <div class="flex gap-6 items-start">
+              <div class="svc-number">2</div>
+              <div>
+                <h3 class="display-h3 mb-3" style="color: #2a383f">
+                  Organizational Design
+                </h3>
+                <p class="body-sm mb-5">
+                  How your business is structured has a direct impact on how
+                  well it performs. As teams grow, reporting lines blur, roles
+                  overlap, and the org chart that made sense at 15 people stops
+                  working at 40. We help you design organizational structures
+                  that are clear, efficient, and built to support your next
+                  stage, without the political baggage that often comes with
+                  restructuring.
+                </p>
+                <p
+                  class="body-sm mb-3"
+                  style="color: #2a383f; font-weight: 600"
+                >
+                  Included:
+                </p>
+                <div class="grid sm:grid-cols-2 gap-1">
+                  <div class="check-item">
+                    <span class="check-dot"></span
+                    ><span class="body-sm"
+                      >Org structure assessment and redesign</span
+                    >
+                  </div>
+                  <div class="check-item">
+                    <span class="check-dot"></span
+                    ><span class="body-sm"
+                      >Role clarity and accountability mapping</span
+                    >
+                  </div>
+                  <div class="check-item">
+                    <span class="check-dot"></span
+                    ><span class="body-sm">Spans and layers analysis</span>
+                  </div>
+                  <div class="check-item">
+                    <span class="check-dot"></span
+                    ><span class="body-sm"
+                      >Restructuring planning and change communication</span
+                    >
+                  </div>
+                  <div class="check-item">
+                    <span class="check-dot"></span
+                    ><span class="body-sm"
+                      >Job architecture and levelling framework</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr style="border-color: #c2c3e8; margin-bottom: 4rem" />
+
+          <div class="mb-16 fade-up d2">
+            <div class="flex gap-6 items-start">
+              <div class="svc-number">3</div>
+              <div>
+                <h3 class="display-h3 mb-3" style="color: #2a383f">
+                  Employee Relations Frameworks
+                </h3>
+                <p class="body-sm mb-5">
+                  Employee relations issues are inevitable. What matters is
+                  whether your business has a consistent, documented way to
+                  handle them. We build the frameworks your managers need to
+                  navigate performance concerns, workplace conflicts, and
+                  sensitive situations: fairly, consistently, and in a way that
+                  protects both the employee and the business.
+                </p>
+                <p
+                  class="body-sm mb-3"
+                  style="color: #2a383f; font-weight: 600"
+                >
+                  Included:
+                </p>
+                <div class="grid sm:grid-cols-2 gap-1">
+                  <div class="check-item">
+                    <span class="check-dot"></span
+                    ><span class="body-sm"
+                      >Conflict resolution process and manager guide</span
+                    >
+                  </div>
+                  <div class="check-item">
+                    <span class="check-dot"></span
+                    ><span class="body-sm"
+                      >Progressive discipline framework and documentation</span
+                    >
+                  </div>
+                  <div class="check-item">
+                    <span class="check-dot"></span
+                    ><span class="body-sm"
+                      >Workplace investigation protocol</span
+                    >
+                  </div>
+                  <div class="check-item">
+                    <span class="check-dot"></span
+                    ><span class="body-sm"
+                      >Accommodation and duty-to-accommodate process</span
+                    >
+                  </div>
+                  <div class="check-item">
+                    <span class="check-dot"></span
+                    ><span class="body-sm"
+                      >HR escalation pathways and decision trees</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr style="border-color: #c2c3e8; margin-bottom: 4rem" />
+
+          <div class="mb-16 fade-up d3">
+            <div class="flex gap-6 items-start">
+              <div class="svc-number">4</div>
+              <div>
+                <h3 class="display-h3 mb-3" style="color: #2a383f">
+                  Culture &amp; Communication Infrastructure
+                </h3>
+                <p class="body-sm mb-5">
+                  Culture at a growing company doesn't maintain itself; it needs
+                  active investment and consistent communication. We help you
+                  define what your culture actually is, build the internal
+                  communication rhythms that reinforce it, and create the
+                  touchpoints that keep your team feeling connected regardless
+                  of team size or working arrangement.
+                </p>
+                <p
+                  class="body-sm mb-3"
+                  style="color: #2a383f; font-weight: 600"
+                >
+                  Included:
+                </p>
+                <div class="grid sm:grid-cols-2 gap-1">
+                  <div class="check-item">
+                    <span class="check-dot"></span
+                    ><span class="body-sm"
+                      >Culture assessment and values articulation</span
+                    >
+                  </div>
+                  <div class="check-item">
+                    <span class="check-dot"></span
+                    ><span class="body-sm"
+                      >Internal communication calendar and templates</span
+                    >
+                  </div>
+                  <div class="check-item">
+                    <span class="check-dot"></span
+                    ><span class="body-sm">Recognition program design</span>
+                  </div>
+                  <div class="check-item">
+                    <span class="check-dot"></span
+                    ><span class="body-sm">Onboarding culture integration</span>
+                  </div>
+                  <div class="check-item">
+                    <span class="check-dot"></span
+                    ><span class="body-sm"
+                      >Team ritual and rhythm design (town halls, check-ins,
+                      milestones)</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr style="border-color: #c2c3e8; margin-bottom: 4rem" />
+
+          <div class="mb-16 fade-up d4">
+            <div class="flex gap-6 items-start">
+              <div class="svc-number">5</div>
+              <div>
+                <h3 class="display-h3 mb-3" style="color: #2a383f">
+                  Exit &amp; Offboarding Experience
+                </h3>
+                <p class="body-sm mb-5">
+                  How a business handles departures says as much about its
+                  culture as how it handles new hires. We build a structured
+                  offboarding process that protects your business, captures
+                  knowledge before it walks out the door, and leaves departing
+                  employees with a genuinely good final impression as your
+                  alumni are part of your employer brand.
+                </p>
+                <p
+                  class="body-sm mb-3"
+                  style="color: #2a383f; font-weight: 600"
+                >
+                  Included:
+                </p>
+                <div class="grid sm:grid-cols-2 gap-1">
+                  <div class="check-item">
+                    <span class="check-dot"></span
+                    ><span class="body-sm"
+                      >Exit interview process and question bank</span
+                    >
+                  </div>
+                  <div class="check-item">
+                    <span class="check-dot"></span
+                    ><span class="body-sm"
+                      >Knowledge transfer documentation framework</span
+                    >
+                  </div>
+                  <div class="check-item">
+                    <span class="check-dot"></span
+                    ><span class="body-sm"
+                      >Offboarding checklist and timeline</span
+                    >
+                  </div>
+                  <div class="check-item">
+                    <span class="check-dot"></span
+                    ><span class="body-sm">Alumni relations approach</span>
+                  </div>
+                  <div class="check-item">
+                    <span class="check-dot"></span
+                    ><span class="body-sm"
+                      >Exit data analysis and reporting</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-bg p-10 mb-14 fade-up">
+            <p class="eyebrow mb-3">Who This Is For</p>
+            <p class="body-sm">
+              Employee Experience &amp; Relations is the right fit if your team
+              has grown to the point where culture feels less consistent than it
+              used to, or if you're building the people infrastructure before
+              issues start showing up. It's also the right fit if you've had
+              employee relations situations that exposed gaps in how your
+              business handles conflict, performance, or sensitive workplace
+              matters.
+            </p>
+          </div>
+
+          <div class="text-center fade-up">
+            <h3 class="display-h3 mb-6" style="color: #2a383f">
+              Ready to Build a Workplace Worth Staying For?
+            </h3>
+            <a
+              href="#"
+              onclick="
+                navigateTo('contact');
+                return false;
+              "
+              class="btn-cta"
+              >Book a Free Consultation
+              <i data-lucide="arrow-right" class="w-4 h-4"></i
+            ></a>
+          </div>
+        </div>
+      </section>
+
+    <!-- FOOTER -->
+
+    <footer class="py-16 px-6 lg:px-12 dark-band">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-4 gap-12 mb-12">
+          <div class="md:col-span-2">
+            <a
+              href="#"
+              onclick="
+                navigateTo('home');
+                return false;
+              "
+              style="
+                font-family: &quot;Cormorant Garamond&quot;, serif;
+                font-weight: 700;
+                font-size: 1.5rem;
+                color: #ffffff;
+                letter-spacing: -0.03em;
+                text-decoration: none;
+              "
+              >HR<span style="color: #c2c3e8">SH</span></a
+            >
+            <p
+              style="
+                color: rgba(255, 255, 255, 0.45);
+                font-size: 0.875rem;
+                margin-top: 1rem;
+                line-height: 1.65;
+                max-width: 280px;
+              "
+            >
+              Building people-first organizations that last. Human-centred.
+              Results-driven. Strategic HR that moves at the speed of your
+              business.
+            </p>
+            <p
+              style="
+                color: rgba(255, 255, 255, 0.3);
+                font-size: 0.8rem;
+                margin-top: 0.75rem;
+              "
+            >
+              hello@hrsh.ca
+            </p>
+          </div>
+          <div>
+            <p
+              style="
+                color: rgba(255, 255, 255, 0.35);
+                font-size: 0.68rem;
+                text-transform: uppercase;
+                letter-spacing: 0.18em;
+                font-weight: 600;
+                margin-bottom: 1rem;
+              "
+            >
+              Navigation
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 0.75rem">
+              <a
+                href="#"
+                onclick="
+                  navigateTo('home');
+                  return false;
+                "
+                style="
+                  color: rgba(255, 255, 255, 0.55);
+                  font-size: 0.875rem;
+                  text-decoration: none;
+                "
+                onmouseover="this.style.color = '#FFF'"
+                onmouseout="this.style.color = 'rgba(255,255,255,0.55)'"
+                >Home</a
+              >
+              <a
+                href="#"
+                onclick="
+                  navigateTo('about');
+                  return false;
+                "
+                style="
+                  color: rgba(255, 255, 255, 0.55);
+                  font-size: 0.875rem;
+                  text-decoration: none;
+                "
+                onmouseover="this.style.color = '#FFF'"
+                onmouseout="this.style.color = 'rgba(255,255,255,0.55)'"
+                >About</a
+              >
+              <a
+                href="#"
+                onclick="
+                  navigateTo('services');
+                  return false;
+                "
+                style="
+                  color: rgba(255, 255, 255, 0.55);
+                  font-size: 0.875rem;
+                  text-decoration: none;
+                "
+                onmouseover="this.style.color = '#FFF'"
+                onmouseout="this.style.color = 'rgba(255,255,255,0.55)'"
+                >Services</a
+              >
+              <a
+                href="#"
+                onclick="
+                  navigateTo('contact');
+                  return false;
+                "
+                style="
+                  color: rgba(255, 255, 255, 0.55);
+                  font-size: 0.875rem;
+                  text-decoration: none;
+                "
+                onmouseover="this.style.color = '#FFF'"
+                onmouseout="this.style.color = 'rgba(255,255,255,0.55)'"
+                >Contact</a
+              >
+            </div>
+          </div>
+          <div>
+            <p
+              style="
+                color: rgba(255, 255, 255, 0.35);
+                font-size: 0.68rem;
+                text-transform: uppercase;
+                letter-spacing: 0.18em;
+                font-weight: 600;
+                margin-bottom: 1rem;
+              "
+            >
+              Services
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 0.75rem">
+              <a
+                href="#"
+                onclick="
+                  navigateTo('svc-foundations');
+                  return false;
+                "
+                style="
+                  color: rgba(255, 255, 255, 0.55);
+                  font-size: 0.875rem;
+                  text-decoration: none;
+                "
+                onmouseover="this.style.color = '#FFF'"
+                onmouseout="this.style.color = 'rgba(255,255,255,0.55)'"
+                >HR Foundations</a
+              >
+              <a
+                href="#"
+                onclick="
+                  navigateTo('svc-talent');
+                  return false;
+                "
+                style="
+                  color: rgba(255, 255, 255, 0.55);
+                  font-size: 0.875rem;
+                  text-decoration: none;
+                "
+                onmouseover="this.style.color = '#FFF'"
+                onmouseout="this.style.color = 'rgba(255,255,255,0.55)'"
+                >Talent Management</a
+              >
+              <a
+                href="#"
+                onclick="
+                  navigateTo('svc-experience');
+                  return false;
+                "
+                style="
+                  color: rgba(255, 255, 255, 0.55);
+                  font-size: 0.875rem;
+                  text-decoration: none;
+                "
+                onmouseover="this.style.color = '#FFF'"
+                onmouseout="this.style.color = 'rgba(255,255,255,0.55)'"
+                >Employee Experience &amp; Relations</a
+              >
+              <a
+                href="#"
+                onclick="
+                  navigateTo('svc-fractional');
+                  return false;
+                "
+                style="
+                  color: rgba(255, 255, 255, 0.55);
+                  font-size: 0.875rem;
+                  text-decoration: none;
+                "
+                onmouseover="this.style.color = '#FFF'"
+                onmouseout="this.style.color = 'rgba(255,255,255,0.55)'"
+                >Fractional HR Leadership</a
+              >
+            </div>
+          </div>
+        </div>
+        <div
+          style="
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+          "
+        >
+          <p style="color: rgba(255, 255, 255, 0.25); font-size: 0.75rem">
+            &#169; 2025 HRSH &#8212; Human Resources Solutions Hub. All rights
+            reserved.
+          </p>
+          <p style="color: rgba(255, 255, 255, 0.25); font-size: 0.75rem">
+            Canada &#183; Remote
+          </p>
+        </div>
+      </div>
+    </footer>
+     <script src="../js/main.js"></script>
+  </body>
+</html>
