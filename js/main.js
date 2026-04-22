@@ -39,20 +39,38 @@ function initObserver() {
   els.forEach((el) => obs.observe(el));
 }
 
-function handleFormSubmit(e) {
+async function handleFormSubmit(e) {
   e.preventDefault();
   const btn = document.getElementById("submitBtn");
   const ok = document.getElementById("formSuccess");
+  const form = e.target;
+  
   btn.textContent = "Sending…";
   btn.disabled = true;
-  setTimeout(() => {
-    ok.classList.remove("hidden");
-    btn.innerHTML = "Send Message";
+
+  try {
+    const response = await fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+      headers: { Accept: "application/json" }
+    });
+
+    if (response.ok) {
+      ok.classList.remove("hidden");
+      form.reset();
+      btn.innerHTML = "Send Message";
+      btn.disabled = false;
+      lucide.createIcons();
+    } else {
+      btn.textContent = "Something went wrong — try again";
+      btn.disabled = false;
+    }
+  } catch (error) {
+    btn.textContent = "Something went wrong — try again";
     btn.disabled = false;
-    e.target.reset();
-    lucide.createIcons();
-  }, 1500);
+  }
 }
+
 
 document.addEventListener("DOMContentLoaded", () => {
   lucide.createIcons();
