@@ -112,7 +112,7 @@ html {
       }
       .dropdown-menu {
         position: absolute;
-        top: calc(100% + 14px);
+        top: calc(100% + 2px);
         left: 50%;
         transform: translateX(-50%) translateY(-8px);
         background: #ffffff;
@@ -133,6 +133,14 @@ html {
         pointer-events: all;
         transform: translateX(-50%) translateY(0);
       }
+      .dropdown-menu::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: 0;
+        right: 0;
+        height: 10px;
+       }
       .dropdown-item {
         display: flex;
         align-items: center;
@@ -449,3 +457,4 @@ html {
       .d4 {
         transition-delay: 0.4s;
       }
+      
