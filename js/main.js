@@ -19,9 +19,16 @@ function toggleMobile() {
 document.getElementById("mobileToggle").addEventListener("click", toggleMobile);
 
 const mainNav = document.getElementById("main-nav");
-window.addEventListener("scroll", () => {
-  mainNav.classList.toggle("scrolled", window.scrollY > 24);
-});
+const isHomePage = window.location.pathname === '/' || 
+                   window.location.pathname.endsWith('index.html');
+
+if (isHomePage) {
+  mainNav.classList.add("scrolled");
+} else {
+  window.addEventListener("scroll", () => {
+    mainNav.classList.toggle("scrolled", window.scrollY > 24);
+  });
+}
 
 function initObserver() {
   const els = document.querySelectorAll(".fade-up:not(.visible)");
@@ -76,3 +83,24 @@ document.addEventListener("DOMContentLoaded", () => {
   lucide.createIcons();
   initObserver();
 });
+
+// Set active nav link based on current page
+(function() {
+  const path = window.location.pathname;
+  let currentPage = 'home';
+  
+  if (path.includes('about')) currentPage = 'about';
+  else if (path.includes('contact')) currentPage = 'contact';
+  else if (path.includes('foundation')) currentPage = 'services';
+  else if (path.includes('talent')) currentPage = 'services';
+  else if (path.includes('experience')) currentPage = 'services';
+  else if (path.includes('fractional')) currentPage = 'services';
+  else if (path.includes('services')) currentPage = 'services';
+
+  document.querySelectorAll('[data-nav]').forEach(link => {
+    link.classList.remove('active');
+    if (link.dataset.nav === currentPage) {
+      link.classList.add('active');
+    }
+  });
+})();
